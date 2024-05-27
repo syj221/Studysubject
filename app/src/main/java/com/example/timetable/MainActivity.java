@@ -2,9 +2,12 @@ package com.example.timetable;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.example.timetable.activity.TimeTableActivity;
+import com.example.timetable.dao.UserDao;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button login, signUp, reg_register;
     TextInputLayout txtInLayoutUsername, txtInLayoutPassword, txtInLayoutRegPassword;
     CheckBox rememberMe;
+    SQLiteDatabase db;
+    UserDao helper;
+    Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
