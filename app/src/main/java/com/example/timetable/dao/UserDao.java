@@ -19,7 +19,7 @@ public class UserDao extends SQLiteOpenHelper {
                 "password varchar(50)," +
                 "firstName varchar(50), " +
                 "lastName varchar(50), " +
-                "email varchar(100), " +
+                "email varchar(100) " +
                 ")";
         db.execSQL(sql);
     }
