@@ -36,6 +36,11 @@ public class UpdateCourseActivity extends AppCompatActivity {
         mListView = findViewById(R.id.lvLesson);
 
         course = (Course) getIntent().getSerializableExtra("course");
+        if (course == null) {
+            Toast.makeText(this, "课程信息加载失败", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
         showLessonInfo();
         showCourseInfo();
     }

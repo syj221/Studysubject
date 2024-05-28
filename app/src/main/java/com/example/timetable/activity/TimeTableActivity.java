@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +17,9 @@ import com.example.timetable.view.TimeTableView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-public class TimeTableActivity extends AppCompatActivity{
+
+public class TimeTableActivity extends AppCompatActivity {
+
     private CourseDao courseDao = new CourseDao(this);
     private TimeTableView timeTable;
     private SharedPreferences sp;
@@ -28,10 +31,19 @@ public class TimeTableActivity extends AppCompatActivity{
 
         sp = getSharedPreferences("config", MODE_PRIVATE);
         timeTable = findViewById(R.id.timeTable);
+        Button settingsButton = findViewById(R.id.btn_settings);
         timeTable.addListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 categoryListener();
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TimeTableActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
     }

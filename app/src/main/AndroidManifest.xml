@@ -15,15 +15,23 @@
         <activity android:name=".activity.UpdateCourseActivity"/>
         <activity android:name=".activity.OptionActivity" />
         <activity android:name=".activity.TimeTableActivity" />
+        <activity android:name=".activity.DisplayNoteActivity" />
+        <activity android:name=".activity.BasicInfoActivity" />
+        <activity android:name=".activity.NoteActivity" />
+        <activity android:name=".activity.ReminderSettingsActivity" />
+        <activity android:name=".activity.HelpFeedbackActivity" />
+        <activity android:name=".activity.SoftwareSettingsActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.AccountSecurityActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

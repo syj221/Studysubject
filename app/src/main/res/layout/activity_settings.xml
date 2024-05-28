@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="基础设置"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingVertical="8dp" />
+
+        <Button
+            android:id="@+id/btn_basic_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="基础信息"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="10dp" />
+
+        <Button
+            android:id="@+id/btn_software_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="软件设置"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_help_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="帮助反馈"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_message_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="消息设置"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="基础功能"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingVertical="8dp" />
+
+        <Button
+            android:id="@+id/btn_grade_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="成绩查询"
+            android:background="@drawable/btn"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="创建笔记"
+            android:background="@drawable/btn"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_super_club"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查看笔记"
+            android:background="@drawable/btn"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_card_recharge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="一卡通充值"
+            android:background="@drawable/btn"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+
+
+
+        <TextView
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="社区"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="黄山学院"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="csdn"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btn_encourage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="百度论坛"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+        <Button
+            android:id="@+id/btn_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="github"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+        <Button
+            android:id="@+id/btn_more1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="华为社区"
+            android:background="@drawable/button_custom"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp" />
+    </LinearLayout>
+</ScrollView>

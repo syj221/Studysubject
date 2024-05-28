@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-<!--    ScrollView可以滚动的用户布局容器-->
+    android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_settings">
 
         <LinearLayout
             android:orientation="vertical"
@@ -18,10 +18,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:orientation="vertical"/>
-
+                android:orientation="vertical">
+            </com.example.timetable.view.TimeTableView>
         </LinearLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn"
+        android:text="设置"
+        android:textColor="#FFFFFF" />
 
-</LinearLayout>
+</RelativeLayout>
