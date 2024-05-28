@@ -8,17 +8,24 @@ import android.os.Bundle;
 
 import com.example.timetable.activity.TimeTableActivity;
 import com.example.timetable.dao.UserDao;
+import com.example.timetable.pojo.User;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextInputLayout txtInLayoutUsername, txtInLayoutPassword, txtInLayoutRegPassword;
     CheckBox rememberMe;
     SQLiteDatabase db;
-    UserDao helper;
+    UserDao helper=new UserDao(MainActivity.this);
     Cursor cursor;
 
     @Override
@@ -66,46 +73,62 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name=username.getText().toString().trim();
+                String pwd=password.getText().toString().trim();
+                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(pwd)) {
+                    List<User> users = helper.getALLDATA();
+                    boolean flag = false;
+                    for (int i = 0; i < users.size(); i++) {
+                        User user= users.get(i);   //可存储账号数量
+                        if (name.equals(user.getUserName()) && pwd.equals(user.getPassword())) {
+                            flag = true;
+                            break;
+                        } else {
+                            flag = false;
+                        }
+                    }
+                    if (flag){
+                        Toast toast = Toast.makeText(getApplicationContext(), "登录成功！", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 30, 0); // 设置Toast位置
+                        toast.show(); // 显示Toast
+                        Intent intent=new Intent(MainActivity.this, TimeTableActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "密码或用户名不正确！", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 30, 0); // 设置Toast位置
+                        toast.show(); // 显示Toast
+                    }
 
-                if (username.getText().toString().trim().isEmpty()) {
-
+                } else if (TextUtils.isEmpty(name) && !TextUtils.isEmpty(pwd)) {
                     Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
                             Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     txtInLayoutUsername.setError("Username should not be empty");
-                } else {
-                    //Here you can write the codes for checking username
-                    if (password.getText().toString().trim().isEmpty()) {
-                        Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
-                                Snackbar.LENGTH_LONG);
-                        View snackbarView = snackbar.getView();
-                        snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                        snackbar.show();
-                        txtInLayoutPassword.setError("Password should not be empty");
-                    } else {
-                        //Here you can write the codes for checking password
-                        Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
-                        startActivity(intent);
-                    }
+                } else if (!TextUtils.isEmpty(name) && TextUtils.isEmpty(pwd)) {
+                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
+                            Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    txtInLayoutPassword.setError("Password should not be empty");
+                }else {
+                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
+                            Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    txtInLayoutUsername.setError("Username should not be empty");
+                    txtInLayoutPassword.setError("Password should not be empty");
                 }
-//                if (password.getText().toString().trim().isEmpty()) {
-//                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
-//                            Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-//                    snackbar.show();
-//                    txtInLayoutPassword.setError("Password should not be empty");
-//                } else {
-//                    //Here you can write the codes for checking password
-//                }
 
-                if (rememberMe.isChecked()) {
-                    //Here you can write the codes if box is checked
-                } else {
-                    //Here you can write the codes if box is not checked
-                }
+//                if (rememberMe.isChecked()) {
+//                    //Here you can write the codes if box is checked
+//                } else {
+//                    //Here you can write the codes if box is not checked
+//                }
 
             }
 
@@ -115,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
     //The method for opening the registration page and another processes or checks for registering
     private void ClickSignUp() {
-
+        //使register页面以dialog的方式弹出
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.register, null);
@@ -133,79 +156,16 @@ public class MainActivity extends AppCompatActivity {
         reg_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (reg_username.getText().toString().trim().isEmpty()) {
-
-                    reg_username.setError("Please fill out this field");
-                } else {
-                    //Here you can write the codes for checking username
-                    if (reg_password.getText().toString().trim().isEmpty()) {
-                        txtInLayoutRegPassword.setPasswordVisibilityToggleEnabled(false);
-                        reg_password.setError("Please fill out this field");
-                    } else {
-                        txtInLayoutRegPassword.setPasswordVisibilityToggleEnabled(true);
-                        //Here you can write the codes for checking password
-                        if (reg_firstName.getText().toString().trim().isEmpty()) {
-
-                            reg_firstName.setError("Please fill out this field");
-                        } else {
-                            //Here you can write the codes for checking firstname
-                            if (reg_lastName.getText().toString().trim().isEmpty()) {
-
-                                reg_lastName.setError("Please fill out this field");
-                            } else {
-                                //Here you can write the codes for checking lastname
-                                if (reg_email.getText().toString().trim().isEmpty()) {
-
-                                    reg_email.setError("Please fill out this field");
-                                } else {
-                                    //Here you can write the codes for checking email
-                                    if (reg_confirmemail.getText().toString().trim().isEmpty()) {
-
-                                        reg_confirmemail.setError("Please fill out this field");
-                                    } else {
-                                        //Here you can write the codes for checking confirmemail
-                                        showNormalDialog();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-//                if (reg_password.getText().toString().trim().isEmpty()) {
-//                    txtInLayoutRegPassword.setPasswordVisibilityToggleEnabled(false);
-//                    reg_password.setError("Please fill out this field");
-//                } else {
-//                    txtInLayoutRegPassword.setPasswordVisibilityToggleEnabled(true);
-//                    //Here you can write the codes for checking password
-//                }
-//                if (reg_firstName.getText().toString().trim().isEmpty()) {
-//
-//                    reg_firstName.setError("Please fill out this field");
-//                } else {
-//                    //Here you can write the codes for checking firstname
-//
-//                }
-//                if (reg_lastName.getText().toString().trim().isEmpty()) {
-//
-//                    reg_lastName.setError("Please fill out this field");
-//                } else {
-//                    //Here you can write the codes for checking lastname
-//                }
-//                if (reg_email.getText().toString().trim().isEmpty()) {
-//
-//                    reg_email.setError("Please fill out this field");
-//                } else {
-//                    //Here you can write the codes for checking email
-//                }
-//                if (reg_confirmemail.getText().toString().trim().isEmpty()) {
-//
-//                    reg_confirmemail.setError("Please fill out this field");
-//                } else {
-//                    //Here you can write the codes for checking confirmemail
-//                }
+                String userName=reg_username.getText().toString().trim();
+                String password=reg_password.getText().toString().trim();
+                String firstName=reg_firstName.getText().toString().trim();
+                String lastName=reg_lastName.getText().toString().trim();
+                String email=reg_email.getText().toString().trim();
+                String confirmEmail=reg_confirmemail.getText().toString().trim();
+                showNormalDialog(userName,password,firstName,lastName,email,confirmEmail);
             }
 
-            private void showNormalDialog() {
+            private void showNormalDialog(String userName,String password,String firstName,String lastName,String email,String confirmEmail) {
                 /* @setIcon 设置对话框图标
                  * @setTitle 设置对话框标题
                  * @setMessage 设置对话框消息提示
@@ -220,7 +180,26 @@ public class MainActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //...To-do
+
+                                if (!TextUtils.isEmpty(userName)&&!TextUtils.isEmpty(password)&&!TextUtils.isEmpty(firstName)&&!TextUtils.isEmpty(lastName)&&!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(confirmEmail)){
+                                    if (email.equals(confirmEmail)){
+                                        User user=new User(userName,password,firstName,lastName,email);
+//                                        helper.add(userName,password,firstName,lastName,email);
+                                        helper.insert(user);
+                                        Toast toast = Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.CENTER, 20, 0); // 设置Toast位置
+                                        toast.show(); // 显示Toast
+                                    }else {
+                                        Toast toast = Toast.makeText(getApplicationContext(), "请确保两次输入email信息一致！", Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.CENTER, 20, 0); // 设置Toast位置
+                                        toast.show(); // 显示Toast
+                                    }
+
+                                }else {
+                                    Toast toast = Toast.makeText(getApplicationContext(), "信息不完整，注册失败！", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.CENTER, 20, 0); // 设置Toast位置
+                                    toast.show(); // 显示Toast
+                                }
                             }
                         });
                 normalDialog.setNegativeButton("关闭",
