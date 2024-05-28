@@ -88,35 +88,35 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if (flag){
-                        Toast toast = Toast.makeText(getApplicationContext(), "登录成功！", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getApplicationContext(), "登录成功！", Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 30, 0); // 设置Toast位置
                         toast.show(); // 显示Toast
                         Intent intent=new Intent(MainActivity.this, TimeTableActivity.class);
                         startActivity(intent);
                         finish();
                     }else {
-                        Toast toast = Toast.makeText(getApplicationContext(), "密码或用户名不正确！", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getApplicationContext(), "密码或用户名不正确！", Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 30, 0); // 设置Toast位置
                         toast.show(); // 显示Toast
                     }
 
                 } else if (TextUtils.isEmpty(name) && !TextUtils.isEmpty(pwd)) {
                     Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
-                            Snackbar.LENGTH_LONG);
+                            Snackbar.LENGTH_SHORT);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     txtInLayoutUsername.setError("Username should not be empty");
                 } else if (!TextUtils.isEmpty(name) && TextUtils.isEmpty(pwd)) {
                     Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
-                            Snackbar.LENGTH_LONG);
+                            Snackbar.LENGTH_SHORT);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     txtInLayoutPassword.setError("Password should not be empty");
                 }else {
                     Snackbar snackbar = Snackbar.make(view, "Please fill out these fields",
-                            Snackbar.LENGTH_LONG);
+                            Snackbar.LENGTH_SHORT);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
@@ -186,17 +186,17 @@ public class MainActivity extends AppCompatActivity {
                                         User user=new User(userName,password,firstName,lastName,email);
 //                                        helper.add(userName,password,firstName,lastName,email);
                                         helper.insert(user);
-                                        Toast toast = Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_LONG);
+                                        Toast toast = Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER, 20, 0); // 设置Toast位置
                                         toast.show(); // 显示Toast
                                     }else {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "请确保两次输入email信息一致！", Toast.LENGTH_LONG);
+                                        Toast toast = Toast.makeText(getApplicationContext(), "请确保两次输入email信息一致！", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER, 20, 0); // 设置Toast位置
                                         toast.show(); // 显示Toast
                                     }
 
                                 }else {
-                                    Toast toast = Toast.makeText(getApplicationContext(), "信息不完整，注册失败！", Toast.LENGTH_LONG);
+                                    Toast toast = Toast.makeText(getApplicationContext(), "信息不完整，注册失败！", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.CENTER, 20, 0); // 设置Toast位置
                                     toast.show(); // 显示Toast
                                 }
